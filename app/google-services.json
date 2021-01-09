@@ -1,0 +1,84 @@
+{
+  "project_info": {
+    "project_number": "292560078883",
+    "project_id": "deeporganics-11406",
+    "storage_bucket": "deeporganics-11406.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292560078883:android:0db3f867ef67787fe48996",
+        "android_client_info": {
+          "package_name": "com.bellogate.deeporganic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292560078883-7n5tsaafr5nbqepel48o90id99qu56hg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bellogate.deeporganic",
+            "certificate_hash": "e1f88753821aa78cb86c1855348d6812b24e4849"
+          }
+        },
+        {
+          "client_id": "292560078883-vvcp93og7i6334ab3ickim3mfc8hodjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArIQulWi8PRQZWah_DWGOfTO4UTAdqN2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292560078883-vvcp93og7i6334ab3ickim3mfc8hodjt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383189433284:android:4b4cf84cb3cfd7ee8e0291",
+        "android_client_info": {
+          "package_name": "com.bellogate.deeporganic.development"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383189433284-aidbip4o3pfpucha0l3beaq4q0odkd05.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bellogate.deeporganic.development",
+            "certificate_hash": "e1f88753821aa78cb86c1855348d6812b24e4849"
+          }
+        },
+        {
+          "client_id": "383189433284-j0macd37fbucjo5gf5ivvd1k5lt60a15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzVDLfzSpeRITcp-OiqNykSwb3KhR0sHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383189433284-j0macd37fbucjo5gf5ivvd1k5lt60a15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
