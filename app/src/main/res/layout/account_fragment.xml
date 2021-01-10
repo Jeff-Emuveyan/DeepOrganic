@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.4" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -185,6 +185,24 @@
                 android:textSize="@dimen/text_size_default"
                 tools:text="jeffemuveyan@gmail.com" />
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="monospace"
+                android:text="@string/phone"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_default"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textSize="@dimen/text_size_default"
+                tools:text="08128027223" />
+
         </LinearLayout>
 
 
@@ -195,6 +213,8 @@
             android:layout_marginStart="24dp"
             android:fontFamily="monospace"
             android:text="@string/followers"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="@dimen/text_size_default"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toTopOf="@+id/linearLayout" />
@@ -203,7 +223,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:fontFamily="monospace"
-            android:textSize="80sp"
+            android:textSize="100sp"
+            android:textColor="@color/primary"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/textView7"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
