@@ -6,4 +6,7 @@
     <string name="title_account">Account</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
+    <string name="followers">Followers</string>
+    <string name="logout">Logout</string>
+    <string name="email">Email</string>
 </resources>
