@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">DeepOrganic</string>
+    <string name="app_name_fancy">Deep | Organic</string>
     <string name="title_home">Home</string>
     <string name="title_store">Your store</string>
     <string name="title_account">Account</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
 </resources>
