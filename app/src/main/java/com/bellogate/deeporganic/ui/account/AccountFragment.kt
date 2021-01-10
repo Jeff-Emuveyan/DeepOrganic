@@ -26,6 +26,14 @@ class AccountFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+
+        //First check if a user is currently logged in:
+        if(viewModel.getCurrentUser() != null){
+            //show UI for a logged in user:s
+
+        }else{//show UI that prompts user to login or sign up:
+
+        }
     }
 
 }
