@@ -10,4 +10,6 @@
     <string name="logout">Logout</string>
     <string name="email">Email</string>
     <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="edit">Edit</string>
 </resources>
