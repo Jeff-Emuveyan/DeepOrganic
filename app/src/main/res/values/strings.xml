@@ -12,4 +12,6 @@
     <string name="phone">Phone</string>
     <string name="address">Address</string>
     <string name="edit">Edit</string>
+    <string name="error_message">Error. Something unexpected happened. Try again</string>
+    <string name="network_error_message">Network Error. Something unexpected happened. Try again</string>
 </resources>
