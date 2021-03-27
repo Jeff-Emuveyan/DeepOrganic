@@ -1,11 +1,8 @@
 package com.bellogate.deeporganic.ui.account
 
-import androidx.lifecycle.ViewModel
-import com.bellogate.deeporganic.model.User
-import com.bellogate.deeporganic.util.SessionManager
+import androidx.hilt.lifecycle.ViewModelInject
+import com.bellogate.deeporganic.util.common.BaseViewModel
 
-class AccountViewModel : ViewModel() {
-
-    fun  getCurrentUser(): User ? = SessionManager.currentUser
+class AccountViewModel @ViewModelInject constructor() : BaseViewModel() {
 
 }

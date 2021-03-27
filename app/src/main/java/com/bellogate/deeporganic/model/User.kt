@@ -1,5 +1,8 @@
 package com.bellogate.deeporganic.model
 
+import androidx.annotation.Keep
+
+@Keep
 class User(var name: String,
            var email: String,
            var phoneNumber: String? = "",
