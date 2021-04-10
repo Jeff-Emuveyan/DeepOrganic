@@ -11,10 +11,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="com.bellogate.deeporganic.MainApplication"
+        android:name="com.bellogate.deeporganic.ui.MainApplication"
         android:theme="@style/Theme.DeepOrganic">
         <activity
-            android:name="com.bellogate.deeporganic.MainActivity"
+            android:name="com.bellogate.deeporganic.ui.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
