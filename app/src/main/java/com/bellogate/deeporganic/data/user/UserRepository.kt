@@ -3,6 +3,7 @@ package com.bellogate.deeporganic.data.user
 import com.bellogate.deeporganic.data.BaseRepository
 import com.bellogate.deeporganic.model.User
 import com.bellogate.deeporganic.util.USERS
+import com.bellogate.deeporganic.util.common.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +25,7 @@ open class UserRepository @Inject constructor (var db: FirebaseFirestore):  Base
 
     open suspend fun save(user: User): Boolean = try{
         db.collection(USERS).document(user.timeCreated.toString()).set(user).await()
+        SessionManager.currentUser = user
         true
     }catch (e: Exception){
         false
