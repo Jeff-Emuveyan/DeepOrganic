@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.bellogate.deeporganic.R
 import com.bellogate.deeporganic.databinding.AccountFragmentBinding
+import com.bellogate.deeporganic.model.User
 import com.bellogate.deeporganic.ui.message.MessageBottomSheet
 import com.bellogate.deeporganic.util.SIGN_UP_LOGIN_REQUEST_CODE
+import com.bellogate.deeporganic.util.common.SessionManager
 import com.firebase.ui.auth.IdpResponse
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -44,6 +46,14 @@ class AccountFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val existingUser = SessionManager.currentUser
+        if(existingUser == null){
+            setUpUIState(UIState.NO_USER, existingUser)
+        }else{
+            setUpUIState(UIState.USER_LOGGED_IN, existingUser)
+        }
+
+
         binding.signUpButton.setOnClickListener {
             signUpOrLogin()
         }
@@ -64,6 +74,7 @@ class AccountFragment : Fragment() {
         lifecycleScope.launch{
             viewModel.signUpResponseHandler?.processResponse(requestCode, resultCode, IdpResponse.fromResultIntent(data),
                 success = {
+                    setUpUIState(UIState.USER_LOGGED_IN, it)
                     Toast.makeText(requireContext(), "Success", Toast.LENGTH_LONG).show()
                 }, networkError = {
                     messageBottomSheet.message = getString(R.string.network_error_message)
@@ -73,6 +84,22 @@ class AccountFragment : Fragment() {
                     messageBottomSheet.show(childFragmentManager, AccountFragment::class.java.simpleName)
                 })
         }
+    }
+
+
+    private fun setUpUIState(uiState: UIState, user: User?){
+        when(uiState){
+            UIState.NO_USER ->{
+                binding.layoutNoUser.visibility = View.VISIBLE
+            }
+            UIState.USER_LOGGED_IN ->{
+                binding.layoutNoUser.visibility = View.GONE
+            }
+        }
+    }
+
+    enum class UIState{
+        NO_USER, USER_LOGGED_IN
     }
 
 }

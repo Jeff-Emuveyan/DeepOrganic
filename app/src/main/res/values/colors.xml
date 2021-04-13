@@ -10,4 +10,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="ash">#808080</color>
     <color name="light_ash">#C1C1C1</color>
+    <color name="translucentgray">#989898</color>
 </resources>

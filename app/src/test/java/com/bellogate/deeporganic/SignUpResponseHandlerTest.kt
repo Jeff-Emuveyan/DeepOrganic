@@ -2,6 +2,7 @@ package com.bellogate.deeporganic
 
 import com.bellogate.deeporganic.data.user.UserRepository
 import com.bellogate.deeporganic.fakes.FakeFirebaseUiException
+import com.bellogate.deeporganic.model.User
 import com.bellogate.deeporganic.util.SIGN_UP_LOGIN_REQUEST_CODE
 import com.bellogate.deeporganic.util.common.signup.SignUpResponseHandler
 import com.firebase.ui.auth.FirebaseUiException
@@ -31,12 +32,13 @@ class SignUpResponseHandlerTest {
 
         //set up:
         val userRepository: UserRepository = mock()
-        Mockito.`when`(userRepository.saveUserFromAuthToDatabase(any())).thenReturn(true)
-        val user: FirebaseUser = mock()
-        Mockito.`when`(user.displayName).thenReturn("Jeff")
-        Mockito.`when`(user.email).thenReturn("Email")
+        val user = User("Jeff", "jeffemuveyan@gmail.com")
+        Mockito.`when`(userRepository.saveUserFromAuthToDatabase(any())).thenReturn(user)
+        val firebaseUser: FirebaseUser = mock()
+        Mockito.`when`(firebaseUser.displayName).thenReturn("Jeff")
+        Mockito.`when`(firebaseUser.email).thenReturn("Email")
 
-        val signUpResponseHandler = SignUpResponseHandler(userRepository, user)
+        val signUpResponseHandler = SignUpResponseHandler(userRepository, firebaseUser)
         val response: IdpResponse = mock()
         Mockito.`when`(response.isNewUser).thenReturn(true)
 

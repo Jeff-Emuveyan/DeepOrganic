@@ -15,12 +15,12 @@ import javax.inject.Inject
 open class UserRepository @Inject constructor (var db: FirebaseFirestore):  BaseRepository() {
 
     /*** This will retrieve the user's details from Auth and save them to the FireStoreDatabase ***/
-    open suspend fun saveUserFromAuthToDatabase(authUser: FirebaseUser?): Boolean{
+    open suspend fun saveUserFromAuthToDatabase(authUser: FirebaseUser?): User?{
         if(authUser != null){
             val newUser = User(name = authUser.displayName ?: "You", email = authUser.email!!)
-            return save(newUser)
+            if (save(newUser)) return newUser
         }
-        return false
+        return null
     }
 
     open suspend fun save(user: User): Boolean = try{

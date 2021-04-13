@@ -152,4 +152,7 @@ dependencies {
     //Mockito framework( use this mockito. It is preferred because it supports suspend functions)
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
 
+    //circle imageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 }

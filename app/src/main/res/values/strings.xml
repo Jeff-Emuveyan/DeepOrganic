@@ -5,7 +5,7 @@
     <string name="title_store">Your store</string>
     <string name="title_account">Account</string>
     <string name="login">Login</string>
-    <string name="sign_up">Sign up</string>
+    <string name="sign_up">Sign up/ Sign in</string>
     <string name="followers">Followers</string>
     <string name="logout">Logout</string>
     <string name="email">Email</string>
@@ -14,4 +14,8 @@
     <string name="edit">Edit</string>
     <string name="error_message">Error. Something unexpected happened. Try again</string>
     <string name="network_error_message">Network Error. Something unexpected happened. Try again</string>
+    <string name="get_started">Get started</string>
+    <string name="sign_up_or_sign_in_to_your_account">Sign up for a new  account or sign in to your existing account</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
 </resources>

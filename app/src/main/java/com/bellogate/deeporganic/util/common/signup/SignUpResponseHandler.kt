@@ -3,6 +3,7 @@ import android.util.Log
 import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatActivity
 import com.bellogate.deeporganic.data.user.UserRepository
+import com.bellogate.deeporganic.model.User
 import com.bellogate.deeporganic.util.SIGN_UP_LOGIN_REQUEST_CODE
 import com.bellogate.deeporganic.util.common.SessionManager
 import com.firebase.ui.auth.ErrorCodes
@@ -20,7 +21,7 @@ class SignUpResponseHandler @Inject constructor (val userRepository: UserReposit
     suspend fun processResponse(requestCode: Int,
                                 resultCode: Int,
                                 response: IdpResponse?,
-                                success: ()->Unit,
+                                success: (user: User?)->Unit,
                                 cancelled: (()->Unit)? = null,
                                 networkError: ()->Unit,
                                 unknownError: ()->Unit){
@@ -48,20 +49,20 @@ class SignUpResponseHandler @Inject constructor (val userRepository: UserReposit
     }
 
 
-    private suspend fun saveUser(response: IdpResponse?, success: ()->Unit){
+    private suspend fun saveUser(response: IdpResponse?, success: (user: User?)->Unit){
         if(response == null) return
 
         if(response.isNewUser) {
             // Successfully signed up. Save this user (gotten from authentication to the fire store:
-            userRepository.saveUserFromAuthToDatabase(authUser)
-            success.invoke()
+            val user = userRepository.saveUserFromAuthToDatabase(authUser)
+            success.invoke(user)
         }else{
             //this was a Sign-in operation because the user already existed, so:
             // fetch the user's details from FireStore so that can have a local copy of this user's
             // data:
             val user = userRepository.getUser(response.email!!)
             SessionManager.currentUser = user
-            success.invoke()
+            success.invoke(user)
         }
     }
 

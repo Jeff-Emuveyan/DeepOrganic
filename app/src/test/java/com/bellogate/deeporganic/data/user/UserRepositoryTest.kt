@@ -23,7 +23,7 @@ class UserRepositoryTest {
 
 
     @Test
-    fun `saveUserFromAuthToDatabase() should return false when FirebaseUser is null`()= runBlocking {
+    fun `saveUserFromAuthToDatabase() should return null when FirebaseUser is null`()= runBlocking {
         val firebaseFirestore: FirebaseFirestore = mock()
 
 
@@ -31,7 +31,7 @@ class UserRepositoryTest {
         //case 1: saveUserFromAuthToDatabase() should return false when 'authUser' is null
         val result = userRepository.saveUserFromAuthToDatabase(null)
 
-        assertEquals(false, result)
+        assertEquals(null, result)
     }
 
     @Test
@@ -53,7 +53,8 @@ class UserRepositoryTest {
         //case 2: saveUserFromAuthToDatabase() should return true when 'authUser' is not null
         val result = spyUserRepository.saveUserFromAuthToDatabase(firebaseUser)
 
-        assertEquals(true, result)
+        assertEquals(result?.name, "Jeff")
+        assertEquals(result?.email, "Jeff@mail.com")
     }
 
 
