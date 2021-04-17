@@ -15,8 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @Keep
-class SignUpResponseHandler @Inject constructor (val userRepository: UserRepository,
-                                                 var authUser: FirebaseUser?) {
+class SignUpResponseHandler @Inject constructor (private val userRepository: UserRepository) {
 
     suspend fun processResponse(requestCode: Int,
                                 resultCode: Int,
@@ -54,7 +53,8 @@ class SignUpResponseHandler @Inject constructor (val userRepository: UserReposit
 
         if(response.isNewUser) {
             // Successfully signed up. Save this user (gotten from authentication to the fire store:
-            val user = userRepository.saveUserFromAuthToDatabase(authUser)
+            val user = userRepository.saveUserFromAuthToDatabase(getFirebaseUser())
+            SessionManager.currentUser = user
             success.invoke(user)
         }else{
             //this was a Sign-in operation because the user already existed, so:
@@ -65,5 +65,7 @@ class SignUpResponseHandler @Inject constructor (val userRepository: UserReposit
             success.invoke(user)
         }
     }
+
+    fun getFirebaseUser(): FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
 }

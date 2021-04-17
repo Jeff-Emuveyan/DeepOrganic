@@ -8,73 +8,68 @@
     android:background="@color/light_ash"
     tools:context="com.bellogate.deeporganic.ui.account.AccountFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_user_logged_in"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/light_ash"
-        app:layout_constraintBottom_toTopOf="@+id/layout_no_user"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_account"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/ic_account"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="6dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="monospace"
-            android:text="Jeff Emuveyan"
-
+            tools:text="Jeff Emuveyan"
+            android:textSize="@dimen/text_size_default"
             app:layout_constraintEnd_toEndOf="@+id/circleImageView"
             app:layout_constraintStart_toStartOf="@+id/circleImageView"
             app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvUserEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="monospace"
-            android:text="someuseremail@gmail.com"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            android:textSize="@dimen/text_size_default"
+            tools:text="someuseremail@gmail.com"
+            app:layout_constraintEnd_toEndOf="@+id/tvUserName"
+            app:layout_constraintStart_toStartOf="@+id/tvUserName"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvSignOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="@string/sign_out"
+            android:fontFamily="monospace"
+            android:textSize="@dimen/text_size_default"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_no_user"
-        android:visibility="gone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_lightblack_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/rectangle_lightblack_border"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -86,6 +81,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             android:fontFamily="monospace"
+            android:textSize="@dimen/text_size_default"
             android:gravity="center_horizontal"
             android:text="@string/get_started"
             android:textColor="@color/black"
@@ -100,9 +96,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="monospace"
             android:gravity="center"
-            android:layout_marginBottom="16dp"
+            android:textSize="@dimen/text_size_default"
             android:text="@string/sign_up_or_sign_in_to_your_account"
             app:layout_constraintBottom_toTopOf="@+id/signUpButton"
             app:layout_constraintEnd_toEndOf="@+id/tvMessage"
@@ -124,7 +121,7 @@
             android:textSize="@dimen/text_size_default"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"/>
+            app:layout_constraintStart_toStartOf="@+id/textView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

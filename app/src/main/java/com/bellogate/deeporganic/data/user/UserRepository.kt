@@ -1,18 +1,25 @@
 package com.bellogate.deeporganic.data.user
 
+import android.content.Context
+import android.util.Log
 import com.bellogate.deeporganic.data.BaseRepository
 import com.bellogate.deeporganic.model.User
 import com.bellogate.deeporganic.util.USERS
 import com.bellogate.deeporganic.util.common.SessionManager
+import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import dagger.Provides
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 
-open class UserRepository @Inject constructor (var db: FirebaseFirestore):  BaseRepository() {
+open class UserRepository @Inject constructor (var db: FirebaseFirestore,
+                                               var firebaseAuth: FirebaseAuth,
+                                               var authUI: AuthUI):  BaseRepository() {
 
     /*** This will retrieve the user's details from Auth and save them to the FireStoreDatabase ***/
     open suspend fun saveUserFromAuthToDatabase(authUser: FirebaseUser?): User?{
@@ -37,5 +44,27 @@ open class UserRepository @Inject constructor (var db: FirebaseFirestore):  Base
             return document.toObject(User::class.java)
         }
         return null
+    }
+
+
+    suspend fun signOut(context: Context){
+        authUI.signOut(context).await()
+        //this call will cause listenForUserSignOut() to trigger (successful or not)
+    }
+
+    /**
+     * A listener to notify us if the user has signed out of Firebase*
+     * ***/
+    fun listenForUserSignOut(userIsLoggedIn: (Boolean)->Unit) =
+        firebaseAuth.addAuthStateListener {
+            if(it.currentUser == null){
+                userIsLoggedIn.invoke(false)
+            }else{
+                userIsLoggedIn.invoke(true)
+            }
+        }
+
+    fun deleteUser(email: String?) {
+
     }
 }

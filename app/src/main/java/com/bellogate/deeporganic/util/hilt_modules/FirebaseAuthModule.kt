@@ -11,11 +11,11 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-object FirebaseUserModule {
+object FirebaseAuthModule {
 
     @Provides
-    fun providesFirebaseUser(): FirebaseUser? {
-        return FirebaseAuth.getInstance().currentUser
+    fun providesFirebaseAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
     }
 
 }

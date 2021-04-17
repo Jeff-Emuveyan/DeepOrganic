@@ -1,5 +1,6 @@
 package com.bellogate.deeporganic.ui.account
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import com.bellogate.deeporganic.util.SIGN_UP_LOGIN_REQUEST_CODE
 import com.bellogate.deeporganic.util.common.SessionManager
 import com.firebase.ui.auth.IdpResponse
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -53,10 +55,29 @@ class AccountFragment : Fragment() {
             setUpUIState(UIState.USER_LOGGED_IN, existingUser)
         }
 
+        //we place a constant listener to know when the user has signed out,
+        // So that we can know when to delete the user from db
+        //This will trigger anytime the user sign out. Successfully or not.
+        viewModel.listenForUserSignOut(SessionManager)
+
+        //we now observe to know when the user has signed out so that we can update the UI
+        viewModel.userSignedOut.observe(viewLifecycleOwner){
+            setUpUIState(UIState.NO_USER, null)
+        }
 
         binding.signUpButton.setOnClickListener {
             signUpOrLogin()
         }
+
+        binding.tvSignOut.setOnClickListener {
+           lifecycleScope.launch{
+               signOut(requireContext())
+           }
+        }
+    }
+
+    private suspend fun signOut(context: Context) {
+        viewModel.signOut(context)
     }
 
     private fun signUpOrLogin() {
@@ -77,11 +98,9 @@ class AccountFragment : Fragment() {
                     setUpUIState(UIState.USER_LOGGED_IN, it)
                     Toast.makeText(requireContext(), "Success", Toast.LENGTH_LONG).show()
                 }, networkError = {
-                    messageBottomSheet.message = getString(R.string.network_error_message)
-                    messageBottomSheet.show(childFragmentManager, AccountFragment::class.java.simpleName)
+                    setUpUIState(UIState.NETWORK_ERROR, null)
                 }, unknownError = {
-                    messageBottomSheet.message = getString(R.string.error_message)
-                    messageBottomSheet.show(childFragmentManager, AccountFragment::class.java.simpleName)
+                    setUpUIState(UIState.UNKNOWN_ERROR, null)
                 })
         }
     }
@@ -95,11 +114,19 @@ class AccountFragment : Fragment() {
             UIState.USER_LOGGED_IN ->{
                 binding.layoutNoUser.visibility = View.GONE
             }
+            UIState.NETWORK_ERROR ->{
+                messageBottomSheet.message = getString(R.string.network_error_message)
+                messageBottomSheet.show(childFragmentManager, AccountFragment::class.java.simpleName)
+            }
+            UIState.UNKNOWN_ERROR ->{
+                messageBottomSheet.message = getString(R.string.error_message)
+                messageBottomSheet.show(childFragmentManager, AccountFragment::class.java.simpleName)
+            }
         }
     }
 
     enum class UIState{
-        NO_USER, USER_LOGGED_IN
+        NO_USER, USER_LOGGED_IN, NETWORK_ERROR, UNKNOWN_ERROR
     }
 
 }
