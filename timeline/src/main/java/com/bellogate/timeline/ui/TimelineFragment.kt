@@ -1,4 +1,4 @@
-package com.seamfix.timeline.ui
+package com.bellogate.timeline.ui
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.seamfix.timeline.R
+import com.bellogate.timeline.R
 
 class TimelineFragment : Fragment() {
 

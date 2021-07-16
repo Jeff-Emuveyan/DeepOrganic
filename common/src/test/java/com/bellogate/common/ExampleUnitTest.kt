@@ -1,4 +1,4 @@
-package com.seamfix.timeline
+package com.bellogate.common
 
 import org.junit.Test
 

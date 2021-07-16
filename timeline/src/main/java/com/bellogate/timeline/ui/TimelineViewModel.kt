@@ -1,4 +1,4 @@
-package com.seamfix.timeline.ui
+package com.bellogate.timeline.ui
 
 import androidx.lifecycle.ViewModel
 
